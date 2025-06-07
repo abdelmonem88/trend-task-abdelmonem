@@ -11,7 +11,6 @@ import {
   Plus,
   Copy,
   Save,
-  MoreHorizontal,
   Palette,
   Grid3X3,
   Link,
@@ -155,7 +154,7 @@ export function AdminMode({
 
                   {/* Column headers using logical properties */}
                   <div className="flex gap-4 ps-4">
-                    {[...question.columns].reverse().map((col, index) => (
+                    {[...question.columns].reverse().map((col) => (
                       <div key={col.id} className="relative group w-28">
                         <Input
                           value={col.label}
@@ -197,7 +196,7 @@ export function AdminMode({
 
               {/* Matrix rows */}
               <div className="divide-y divide-gray-100">
-                {question.rows.map((row, rowIndex) => (
+                {question.rows.map((row) => (
                   <div
                     key={row.id}
                     className="flex items-center p-3 hover:bg-gray-50"

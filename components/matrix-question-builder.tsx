@@ -5,7 +5,7 @@ import { MatrixQuestion } from "@/types/matrix";
 import { AdminMode } from "./admin-mode";
 import { UserMode } from "./user-mode";
 import { Button } from "@/components/ui/button";
-import { Edit3, Plus, Trash2 } from "lucide-react";
+import { Plus } from "lucide-react";
 
 export function MatrixQuestionBuilder() {
   const [editingQuestionIndex, setEditingQuestionIndex] = useState<
@@ -137,53 +137,6 @@ export function MatrixQuestionBuilder() {
       }
     } catch (error) {
       console.error("Error resetting question:", error);
-    }
-  };
-
-  const deleteQuestion = (questionIndex: number) => {
-    try {
-      const updatedQuestions = questions.filter(
-        (_, index) => index !== questionIndex
-      );
-
-      // If this was the last question, show admin mode for creating new question
-      if (updatedQuestions.length === 0) {
-        setQuestions([]);
-        setIsCreatingFirst(true);
-        setNewQuestion(createQuestion(0));
-        setEditingQuestionIndex(null);
-        return;
-      }
-
-      setQuestions(updatedQuestions);
-
-      // Reset question numbers and IDs after deletion
-      const reindexedQuestions = updatedQuestions.map((q, index) => ({
-        ...q,
-        id: `question-${index + 1}`,
-        rows: q.rows.map((row, rowIndex) => ({
-          ...row,
-          id: `q${index + 1}-row-${rowIndex + 1}`,
-        })),
-        columns: q.columns.map((col, colIndex) => ({
-          ...col,
-          id: `q${index + 1}-col-${colIndex + 1}`,
-        })),
-      }));
-
-      setQuestions(reindexedQuestions);
-
-      // Reset editing state if we were editing the deleted question
-      if (editingQuestionIndex === questionIndex) {
-        setEditingQuestionIndex(null);
-      } else if (
-        editingQuestionIndex !== null &&
-        editingQuestionIndex > questionIndex
-      ) {
-        setEditingQuestionIndex(editingQuestionIndex - 1);
-      }
-    } catch (error) {
-      console.error("Error deleting question:", error);
     }
   };
 

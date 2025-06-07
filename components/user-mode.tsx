@@ -3,10 +3,7 @@
 import { useState } from "react";
 import { MatrixQuestion } from "@/types/matrix";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
 
 interface UserModeProps {
   question: MatrixQuestion;
