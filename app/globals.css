@@ -1,26 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap");
+@import url("https://db.onlinewebfonts.com/c/a85976799f11330f194b1dc04c954666?family=Bahij+TheSansArabic+Plain");
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-geist-sans: "Geist", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-geist-mono: "Geist Mono", ui-monospace, "SFMono-Regular", "Consolas",
+    "Liberation Mono", "Menlo", monospace;
+  --font-bahij-arabic: "Bahij TheSansArabic", "Noto Sans Arabic", system-ui,
+    sans-serif;
+
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.137 0 0);
+
+  --color-card: oklch(1 0 0);
+  --color-card-foreground: oklch(0.137 0 0);
+
+  --color-popover: oklch(1 0 0);
+  --color-popover-foreground: oklch(0.137 0 0);
+
+  --color-primary: oklch(0.922 0 0);
+  --color-primary-foreground: oklch(0.098 0 0);
+
+  --color-secondary: oklch(0.961 0 0);
+  --color-secondary-foreground: oklch(0.098 0 0);
+
+  --color-muted: oklch(0.961 0 0);
+  --color-muted-foreground: oklch(0.451 0 0);
+
+  --color-accent: oklch(0.961 0 0);
+  --color-accent-foreground: oklch(0.098 0 0);
+
+  --color-destructive: oklch(0.635 0.201 27.325);
+  --color-destructive-foreground: oklch(0.98 0 0);
+
+  --color-border: oklch(0.894 0 0);
+  --color-input: oklch(0.894 0 0);
+  --color-ring: oklch(0.137 0 0);
+  --radius: 0.5rem;
+
+  --color-sidebar-background: oklch(1 0 0);
+  --color-sidebar-foreground: oklch(0.451 0 0);
+  --color-sidebar-primary: oklch(0.098 0 0);
+  --color-sidebar-primary-foreground: oklch(0.98 0 0);
+  --color-sidebar-accent: oklch(0.961 0 0);
+  --color-sidebar-accent-foreground: oklch(0.098 0 0);
+  --color-sidebar-border: oklch(0.922 0 0);
+  --color-sidebar-ring: oklch(0.708 0 0);
+
+  /* Custom primary color */
+  --primary-blue: #0e0464;
+  --primary-blue-hover: #0a0352;
+  --primary-blue-light: #eaf5ff;
+  --natural-black: #141414;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --color-background: oklch(0.055 0 0);
+  --color-foreground: oklch(0.98 0 0);
+
+  --color-card: oklch(0.055 0 0);
+  --color-card-foreground: oklch(0.98 0 0);
+
+  --color-popover: oklch(0.055 0 0);
+  --color-popover-foreground: oklch(0.98 0 0);
+
+  --color-primary: oklch(0.98 0 0);
+  --color-primary-foreground: oklch(0.098 0 0);
+
+  --color-secondary: oklch(0.157 0 0);
+  --color-secondary-foreground: oklch(0.98 0 0);
+
+  --color-muted: oklch(0.157 0 0);
+  --color-muted-foreground: oklch(0.635 0 0);
+
+  --color-accent: oklch(0.157 0 0);
+  --color-accent-foreground: oklch(0.98 0 0);
+
+  --color-destructive: oklch(0.706 0.15 29.233);
+  --color-destructive-foreground: oklch(0.98 0 0);
+
+  --color-border: oklch(0.157 0 0);
+  --color-input: oklch(0.157 0 0);
+  --color-ring: oklch(0.816 0 0);
+
+  --color-sidebar-background: oklch(0.024 0 0);
+  --color-sidebar-foreground: oklch(0.635 0 0);
+  --color-sidebar-primary: oklch(0.98 0 0);
+  --color-sidebar-primary-foreground: oklch(0.024 0 0);
+  --color-sidebar-accent: oklch(0.157 0 0);
+  --color-sidebar-accent-foreground: oklch(0.98 0 0);
+  --color-sidebar-border: oklch(0.157 0 0);
+  --color-sidebar-ring: oklch(0.267 0 0);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Arabic Font Loading */
+@font-face {
+  font-family: "Bahij TheSansArabic";
+  src: url("https://db.onlinewebfonts.com/t/a85976799f11330f194b1dc04c954666.eot");
+  src: url("https://db.onlinewebfonts.com/t/a85976799f11330f194b1dc04c954666.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/a85976799f11330f194b1dc04c954666.woff2")
+      format("woff2"),
+    url("https://db.onlinewebfonts.com/t/a85976799f11330f194b1dc04c954666.woff")
+      format("woff"),
+    url("https://db.onlinewebfonts.com/t/a85976799f11330f194b1dc04c954666.ttf")
+      format("truetype"),
+    url("https://db.onlinewebfonts.com/t/a85976799f11330f194b1dc04c954666.svg#Bahij TheSansArabic Plain")
+      format("svg");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
+/* Global styles - Set natural black as default text color throughout the app */
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Bahij TheSansArabic", "Noto Sans Arabic", system-ui, sans-serif;
+  background-color: #f7f7f7;
+  color: var(--natural-black);
+}
+
+/* Apply Arabic font and natural black color globally */
+* {
+  font-family: "Bahij TheSansArabic", "Noto Sans Arabic", system-ui, sans-serif;
+  color: var(--natural-black);
+}
+
+/* Ensure inputs and form elements inherit the color */
+input,
+textarea,
+select,
+button {
+  color: inherit;
+}
+
+/* Override only when explicitly needed (like white text on dark backgrounds) */
+.text-white {
+  color: white !important;
+}
+
+.text-primary-blue {
+  color: var(--primary-blue) !important;
+}
+
+/* Custom primary color utilities */
+.bg-primary-blue {
+  background-color: var(--primary-blue);
+}
+
+.bg-primary-blue:hover {
+  background-color: var(--primary-blue-hover);
+}
+
+.border-primary-blue {
+  border-color: var(--primary-blue);
+}
+
+.bg-primary-blue-light {
+  background-color: var(--primary-blue-light);
+}
+
+/* Custom scrollbar styles */
+.scrollable-container {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-blue) #f1f1f1;
+}
+
+.scrollable-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+  background: var(--primary-blue);
+  border-radius: 10px;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-blue-hover);
 }
