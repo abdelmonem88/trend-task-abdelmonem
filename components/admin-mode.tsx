@@ -173,7 +173,7 @@ export function AdminMode({
                           onChange={(e) =>
                             updateColumnLabel(col.id, e.target.value)
                           }
-                          className="text-center text-sm h-8 bg-white border border-gray-200 focus:ring-1 focus:ring-primary-blue rounded"
+                          className="text-center text-sm h-8 bg-white border border-gray-200 focus:outline-none focus:ring-0 focus:border-gray-200 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-gray-200 rounded"
                           dir="rtl"
                           style={{ direction: "rtl", textAlign: "center" }}
                         />
@@ -187,7 +187,7 @@ export function AdminMode({
                               backgroundColor: "rgba(14, 4, 100, 0.2)",
                             }}
                           >
-                            <SVG name="x" size={12} color="#041C64" />
+                            <SVG name="x" size={20} color="#041C64" />
                           </Button>
                         )}
                       </div>
@@ -222,7 +222,7 @@ export function AdminMode({
                       <Input
                         value={row.label}
                         onChange={(e) => updateRowLabel(row.id, e.target.value)}
-                        className="text-end text-sm h-8 bg-white border border-gray-200 focus:ring-1 focus:ring-primary-blue rounded"
+                        className="text-end text-sm h-8 bg-white border border-gray-200 focus:outline-none focus:ring-0 focus:border-gray-200 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-gray-200 rounded"
                         dir="rtl"
                         style={{ direction: "rtl", textAlign: "right" }}
                       />
@@ -236,7 +236,7 @@ export function AdminMode({
                             backgroundColor: "rgba(14, 4, 100, 0.2)",
                           }}
                         >
-                          <SVG name="x" size={12} color="#041C64" />
+                          <SVG name="x" size={20} color="#041C64" />
                         </Button>
                       )}
                     </div>

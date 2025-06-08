@@ -61,27 +61,20 @@ export function UserMode({ question, onEdit }: UserModeProps) {
     >
       {/* Question text */}
       <div className="p-8 pb-4">
-        <div
-          className="bg-gray-50 rounded-lg p-6 mb-8 cursor-pointer hover:bg-gray-100 transition-colors"
-          onClick={onEdit}
-        >
-          <h2 className="text-xl font-medium text-gray-800 text-right leading-relaxed">
+        <div className="rounded-lg p-6 cursor-pointer" onClick={onEdit}>
+          <h2 className="text-lg font-medium text-gray-800 text-right leading-relaxed">
             {question.text}
           </h2>
         </div>
 
         {/* Matrix container with proper RTL layout and scrolling */}
-        <div className="scrollable-container overflow-auto max-h-96 max-w-full border border-gray-200 rounded-lg bg-white">
+        <div className="scrollable-container overflow-auto max-h-96 max-w-full">
           <div className="min-w-max">
             {/* Header row */}
-            <div className="bg-gray-50 border-b border-gray-200 sticky top-0 z-10">
+            <div className="sticky top-0 z-10">
               <div className="flex items-center p-4">
                 {/* Row header space */}
-                <div className="w-32 text-center">
-                  <div className="text-sm font-medium text-gray-700">
-                    العنصر
-                  </div>
-                </div>
+                <div className="w-32 text-center"></div>
 
                 {/* Column headers in reverse order for RTL */}
                 <div className="flex gap-4 ps-4">
@@ -97,15 +90,15 @@ export function UserMode({ question, onEdit }: UserModeProps) {
             </div>
 
             {/* Data rows */}
-            <div className="divide-y divide-gray-100">
+            <div className="space-y-2">
               {question.rows.map((row) => (
                 <div
                   key={row.id}
-                  className="flex items-center p-4 hover:bg-gray-50 transition-colors"
+                  className="flex items-center p-3 bg-[#F7F7F7] rounded-[10px]"
                 >
                   {/* Row label */}
-                  <div className="w-32 text-center border-e border-gray-200 pe-3">
-                    <span className="text-sm font-medium text-gray-800">
+                  <div className="w-32 text-center">
+                    <span className="font-medium text-gray-800">
                       {row.label}
                     </span>
                   </div>
@@ -127,7 +120,7 @@ export function UserMode({ question, onEdit }: UserModeProps) {
                                 checked as boolean
                               )
                             }
-                            className="w-5 h-5 border-2 border-gray-300 data-[state=checked]:bg-primary data-[state=checked]:border-primary-blue"
+                            className="w-5 h-5 border-2 border-gray-300 data-[state=checked]:bg-primary! data-[state=checked]:border-primary-blue"
                           />
                         ) : (
                           <RadioGroup
