@@ -4,6 +4,7 @@ import { MatrixQuestion, MatrixRow, MatrixColumn } from "@/types/matrix";
 import { QuestionInput } from "./admin/question-input";
 import { MatrixEditor } from "./admin/matrix-editor";
 import { QuestionSettings } from "./admin/question-settings";
+import { toast } from "sonner";
 
 interface AdminModeProps {
   question: MatrixQuestion;
@@ -46,6 +47,8 @@ export function AdminMode({
         ...question,
         rows: question.rows.filter((row) => row.id !== rowId),
       });
+    } else {
+      toast.error("لا يمكن حذف الصف الوحيد المتبقي");
     }
   };
 
@@ -55,6 +58,8 @@ export function AdminMode({
         ...question,
         columns: question.columns.filter((col) => col.id !== columnId),
       });
+    } else {
+      toast.error("لا يمكن حذف العمود الوحيد المتبقي");
     }
   };
 

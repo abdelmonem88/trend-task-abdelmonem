@@ -125,21 +125,18 @@ export function MatrixEditor({
             ))}
 
             {/* Add row button inside the matrix, using logical positioning */}
-            <div className="flex items-center p-3">
+            <div className="flex items-center">
               <div className="w-32 pe-3 flex justify-end">
                 <Button
                   onClick={onAddRow}
                   variant="ghost"
                   size="sm"
-                  className="flex items-center gap-2 hover:bg-primary-light text-base font-medium px-4 py-2"
-                  style={{ color: "#041C64" }}
+                  className="flex items-center gap-2 hover:bg-primary-light text-base font-medium text-primary-blue"
+                  // style={{ color: "#041C64" }}
                 >
                   <SVG name="plus" size={16} color="#041C64" />
                   <span>إضافة صف</span>
                 </Button>
-              </div>
-              <div className="flex-1 ps-4">
-                {/* Empty space for alignment */}
               </div>
             </div>
           </div>

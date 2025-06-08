@@ -1,5 +1,6 @@
 import { MatrixQuestion } from "@/types/matrix";
 import { createQuestion, validateQuestion } from "@/lib/utils/question-utils";
+import { toast } from "sonner";
 
 interface QuestionOperationsProps {
   questions: MatrixQuestion[];
@@ -39,13 +40,14 @@ export function useQuestionOperations({
   const saveFirstQuestion = () => {
     const errors = validateQuestion(newQuestion);
     if (errors.length > 0) {
-      alert(errors.join("\n"));
+      errors.forEach((error) => toast.error(error));
       return;
     }
 
     setQuestions([newQuestion]);
     setIsCreatingFirst(false);
     setEditingQuestionIndex(null);
+    toast.success("تم حفظ السؤال بنجاح");
   };
 
   const addNewQuestion = () => {
@@ -55,7 +57,7 @@ export function useQuestionOperations({
         const currentQuestion = questions[editingQuestionIndex];
         const errors = validateQuestion(currentQuestion);
         if (errors.length > 0) {
-          alert(errors.join("\n"));
+          errors.forEach((error) => toast.error(error));
           return;
         }
       }
@@ -64,7 +66,7 @@ export function useQuestionOperations({
       if (isCreatingFirst) {
         const errors = validateQuestion(newQuestion);
         if (errors.length > 0) {
-          alert(errors.join("\n"));
+          errors.forEach((error) => toast.error(error));
           return;
         }
         // Save the current question first
@@ -86,6 +88,7 @@ export function useQuestionOperations({
       }
     } catch (error) {
       console.error("Error adding new question:", error);
+      toast.error("حدث خطأ أثناء إضافة السؤال");
     }
   };
 
@@ -103,8 +106,10 @@ export function useQuestionOperations({
           )
         );
       }
+      toast.info("تم إعادة تعيين السؤال");
     } catch (error) {
       console.error("Error resetting question:", error);
+      toast.error("حدث خطأ أثناء إعادة تعيين السؤال");
     }
   };
 
@@ -120,13 +125,15 @@ export function useQuestionOperations({
       if (editingQuestionIndex !== null && questions[editingQuestionIndex]) {
         const errors = validateQuestion(questions[editingQuestionIndex]);
         if (errors.length > 0) {
-          alert(errors.join("\n"));
+          errors.forEach((error) => toast.error(error));
           return;
         }
       }
       setEditingQuestionIndex(null);
+      toast.success("تم حفظ تعديلات السؤال");
     } catch (error) {
       console.error("Error stopping edit:", error);
+      toast.error("حدث خطأ أثناء حفظ التعديلات");
     }
   };
 
