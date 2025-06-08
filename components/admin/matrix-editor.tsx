@@ -1,4 +1,4 @@
-import { MatrixQuestion, MatrixRow, MatrixColumn } from "@/types/matrix";
+import { MatrixQuestion } from "@/types/matrix";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SVG } from "@/components/shared/SVG";
