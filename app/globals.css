@@ -124,12 +124,6 @@ body {
   color: var(--natural-black);
 }
 
-/* Apply Arabic font and natural black color globally */
-* {
-  font-family: "Bahij TheSansArabic", "Noto Sans Arabic", system-ui, sans-serif;
-  color: var(--natural-black);
-}
-
 /* Ensure inputs and form elements inherit the color */
 input,
 textarea,
@@ -138,21 +132,16 @@ button {
   color: inherit;
 }
 
-/* Override only when explicitly needed (like white text on dark backgrounds) */
-.text-white {
-  color: white !important;
-}
-
 .text-primary-blue {
   color: var(--primary-blue) !important;
 }
 
 /* Custom primary color utilities */
-.bg-primary-blue {
+.bg-primary {
   background-color: var(--primary-blue);
 }
 
-.bg-primary-blue:hover {
+.bg-primary:hover {
   background-color: var(--primary-blue-hover);
 }
 
@@ -160,7 +149,7 @@ button {
   border-color: var(--primary-blue);
 }
 
-.bg-primary-blue-light {
+.bg-primary-light {
   background-color: var(--primary-blue-light);
 }
 

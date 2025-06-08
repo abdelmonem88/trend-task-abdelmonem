@@ -6,20 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Trash2,
-  Plus,
-  Copy,
-  Save,
-  Palette,
-  Grid3X3,
-  Link,
-  Underline,
-  Italic,
-  Bold,
-  X,
-  ChevronDown,
-} from "lucide-react";
+import { Palette } from "lucide-react";
+import { SVG } from "@/components/shared/SVG";
 
 interface AdminModeProps {
   question: MatrixQuestion;
@@ -105,27 +93,47 @@ export function AdminMode({
                 updateQuestion({ ...question, text: e.target.value })
               }
               placeholder="اكتب سؤالك..."
-              className="bg-gray-50 border-0 border-b-2 border-primary-blue rounded px-3 pt-1 min-h-12"
+              className="bg-gray-50 border-0 border-b-2 border-primary-blue rounded-[4px] px-3 py-2 min-h-12 text-lg placeholder:text-[#B1B0BB] placeholder:text-lg"
               dir="rtl"
               style={{ direction: "rtl", textAlign: "right" }}
             />
 
             {/* Text editor toolbar */}
-            <div className="flex justify-start gap-4 py-3 border-t border-gray-100">
+            <div className="flex justify-start gap-1 py-3 border-t border-gray-100">
               <Button variant="ghost" size="sm" className="p-2">
-                <Palette className="w-4 h-4 text-gray-600" />
+                <SVG
+                  name="text-bold"
+                  size={16}
+                  color="#575757"
+                  fillColor="#fff"
+                />
               </Button>
               <Button variant="ghost" size="sm" className="p-2">
-                <Link className="w-4 h-4 text-gray-600" />
+                <SVG
+                  name="text-italic"
+                  size={16}
+                  color="#575757"
+                  fillColor="#fff"
+                />
               </Button>
               <Button variant="ghost" size="sm" className="p-2">
-                <Underline className="w-4 h-4 text-gray-600" />
+                <SVG
+                  name="text-underline"
+                  size={16}
+                  color="#575757"
+                  fillColor="#fff"
+                />
               </Button>
               <Button variant="ghost" size="sm" className="p-2">
-                <Italic className="w-4 h-4 text-gray-600" />
+                <SVG name="link-2" size={16} color="#575757" fillColor="#fff" />
               </Button>
               <Button variant="ghost" size="sm" className="p-2">
-                <Bold className="w-4 h-4 text-gray-600" />
+                <SVG
+                  name="gallery"
+                  size={16}
+                  color="#575757"
+                  fillColor="#fff"
+                />
               </Button>
             </div>
           </div>
@@ -133,21 +141,26 @@ export function AdminMode({
           {/* Type selector with dropdown */}
           <div className="flex items-center justify-between gap-2 px-3 bg-gray-50 rounded-lg border border-gray-200 min-h-12 flex-1">
             <div className="flex items-center gap-2">
-              <Grid3X3 className="w-4 h-4 text-gray-600" />
-              <span className="text-sm font-medium text-gray-700">مصفوفة</span>
+              <SVG name="grid" size={16} color="#292D32" fillColor="#fff" />
+              <span className="text-sm font-medium">مصفوفة</span>
             </div>
             <Button variant="ghost" size="sm" className="p-1 h-auto">
-              <ChevronDown className="w-4 h-4 text-gray-600" />
+              <SVG
+                name="chevron-down"
+                size={16}
+                color="#575757"
+                fillColor="#fff"
+              />
             </Button>
           </div>
         </div>
 
         {/* Scrollable Matrix section */}
         <div className="space-y-4">
-          <div className="scrollable-container overflow-auto max-h-96 max-w-full border border-gray-200 rounded-lg bg-white">
+          <div className="scrollable-container overflow-auto max-h-96 max-w-full bg-white">
             <div className="min-w-max">
               {/* Column headers row */}
-              <div className="bg-gray-50 border-b border-gray-200 sticky top-0 z-10">
+              <div className="sticky top-0 z-10">
                 <div className="flex items-center p-3">
                   {/* Row labels header space */}
                   <div className="w-32"></div>
@@ -170,9 +183,12 @@ export function AdminMode({
                             onClick={() => removeColumn(col.id)}
                             variant="ghost"
                             size="sm"
-                            className="absolute -top-2 -start-2 opacity-0 group-hover:opacity-100 transition-opacity w-5 h-5 p-0 bg-red-500 hover:bg-red-600 text-white rounded-full"
+                            className="absolute -top-[40%] -right-[-40%] opacity-0 group-hover:opacity-100 transition-opacity w-5 h-5 p-0 rounded flex items-center justify-center"
+                            style={{
+                              backgroundColor: "rgba(14, 4, 100, 0.2)",
+                            }}
                           >
-                            <X className="w-3 h-3" />
+                            <SVG name="x" size={12} color="#041C64" />
                           </Button>
                         )}
                       </div>
@@ -184,9 +200,10 @@ export function AdminMode({
                         onClick={addColumn}
                         variant="ghost"
                         size="sm"
-                        className="flex items-center gap-1 text-primary-blue hover:text-primary-blue hover:bg-primary-blue-light text-sm"
+                        className="flex items-center gap-2 hover:bg-primary-light text-base font-medium"
+                        style={{ color: "#041C64" }}
                       >
-                        <Plus className="w-3 h-3" />
+                        <SVG name="plus" size={16} color="#041C64" />
                         <span>إضافة عمود</span>
                       </Button>
                     </div>
@@ -195,14 +212,14 @@ export function AdminMode({
               </div>
 
               {/* Matrix rows */}
-              <div className="divide-y divide-gray-100">
+              <div className="space-y-2">
                 {question.rows.map((row) => (
                   <div
                     key={row.id}
-                    className="flex items-center p-3 hover:bg-gray-50"
+                    className="flex items-center p-3 bg-[#F7F7F7] rounded-[10px]"
                   >
                     {/* Row label using logical properties */}
-                    <div className="w-32 relative group border-e border-gray-200 pe-3">
+                    <div className="w-32 relative group pe-3">
                       <Input
                         value={row.label}
                         onChange={(e) => updateRowLabel(row.id, e.target.value)}
@@ -215,9 +232,12 @@ export function AdminMode({
                           onClick={() => removeRow(row.id)}
                           variant="ghost"
                           size="sm"
-                          className="absolute -top-2 -end-2 opacity-0 group-hover:opacity-100 transition-opacity w-5 h-5 p-0 bg-red-500 hover:bg-red-600 text-white rounded-full"
+                          className="absolute -top-[40%] -right-[-40%] opacity-0 group-hover:opacity-100 transition-opacity w-5 h-5 p-0 rounded flex items-center justify-center"
+                          style={{
+                            backgroundColor: "rgba(14, 4, 100, 0.2)",
+                          }}
                         >
-                          <X className="w-3 h-3" />
+                          <SVG name="x" size={12} color="#041C64" />
                         </Button>
                       )}
                     </div>
@@ -240,15 +260,16 @@ export function AdminMode({
                 ))}
 
                 {/* Add row button inside the matrix, using logical positioning */}
-                <div className="flex items-center p-3 bg-gray-50/50 border-t border-dashed border-gray-300">
-                  <div className="w-32 border-e border-gray-200 pe-3 flex justify-end">
+                <div className="flex items-center p-3">
+                  <div className="w-32 pe-3 flex justify-end">
                     <Button
                       onClick={addRow}
                       variant="ghost"
                       size="sm"
-                      className="flex items-center gap-2 text-primary-blue hover:text-primary-blue hover:bg-primary-blue-light text-sm px-4 py-2"
+                      className="flex items-center gap-2 hover:bg-primary-light text-base font-medium px-4 py-2"
+                      style={{ color: "#041C64" }}
                     >
-                      <Plus className="w-4 h-4" />
+                      <SVG name="plus" size={16} color="#041C64" />
                       <span>إضافة صف</span>
                     </Button>
                   </div>
@@ -331,20 +352,17 @@ export function AdminMode({
 
               {/* Action buttons on the left */}
               <div className="flex gap-3">
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  className="bg-primary-blue-light text-primary-blue p-3 rounded-full hover:bg-primary-blue-light/80"
-                >
-                  <Copy className="w-4 h-4" />
+                <Button className="bg-primary-light text-primary-blue rounded-full hover:bg-primary-light/80 w-12 h-12">
+                  <SVG name="copy" size={20} color="#0e0464" fillColor="#fff" />
                 </Button>
 
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  className="bg-primary-blue-light text-primary-blue p-3 rounded-full hover:bg-primary-blue-light/80"
-                >
-                  <Trash2 className="w-4 h-4" />
+                <Button className="bg-primary-light text-primary-blue rounded-full hover:bg-primary-light/80 w-12 h-12">
+                  <SVG
+                    name="trash"
+                    size={20}
+                    color="#0e0464"
+                    fillColor="#fff"
+                  />
                 </Button>
 
                 {onAddQuestion && (
@@ -352,9 +370,9 @@ export function AdminMode({
                     onClick={onAddQuestion}
                     variant="outline"
                     size="lg"
-                    className="border-primary-blue text-primary-blue hover:bg-primary-blue-light px-6 py-3 rounded-full flex items-center gap-2"
+                    className="border-primary-blue text-primary-blue hover:bg-primary-light px-6 py-3 h-12 rounded-full flex items-center gap-2"
                   >
-                    <Plus className="w-4 h-4" />
+                    <SVG name="plus" size={16} color="#0e0464" />
                     إضافة سؤال آخر
                   </Button>
                 )}
@@ -362,9 +380,9 @@ export function AdminMode({
                 <Button
                   onClick={onSave}
                   size="lg"
-                  className="bg-primary-blue hover:bg-primary-blue-hover text-white px-6 py-3 rounded-full flex items-center gap-2"
+                  className="bg-primary hover:bg-primary-blue-hover text-[#fff]! px-6 py-3 h-12 rounded-full flex items-center gap-2"
                 >
-                  <Save className="w-4 h-4" />
+                  <SVG name="save" size={20} color="white" />
                   حفظ السؤال
                 </Button>
               </div>

@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+
 import { MatrixQuestion } from "@/types/matrix";
 import { AdminMode } from "./admin-mode";
 import { UserMode } from "./user-mode";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { SVG } from "@/components/shared/SVG";
 
 export function MatrixQuestionBuilder() {
   const [editingQuestionIndex, setEditingQuestionIndex] = useState<
@@ -179,15 +180,39 @@ export function MatrixQuestionBuilder() {
     );
   }
 
-  // Show admin mode for creating first question
-  if (isCreatingFirst) {
+  // Determine if we should show admin mode
+  const showAdminMode = isCreatingFirst || editingQuestionIndex !== null;
+
+  // Get the current question and handlers for admin mode
+  const getCurrentQuestion = () => {
+    if (isCreatingFirst) {
+      return newQuestion;
+    } else if (editingQuestionIndex !== null) {
+      return questions[editingQuestionIndex];
+    }
+    return null;
+  };
+
+  const getCurrentSaveHandler = () => {
+    if (isCreatingFirst) {
+      return saveFirstQuestion;
+    } else {
+      return stopEditing;
+    }
+  };
+
+  // Show admin mode for creating first question or editing existing question
+  if (showAdminMode) {
+    const currentQuestion = getCurrentQuestion();
+    if (!currentQuestion) return null;
+
     return (
       <div className="space-y-6">
         <div className="border border-gray-200 rounded-xl overflow-hidden">
           <AdminMode
-            question={newQuestion}
+            question={currentQuestion}
             updateQuestion={updateQuestion}
-            onSave={saveFirstQuestion}
+            onSave={getCurrentSaveHandler()}
             onAddQuestion={resetCurrentQuestion}
           />
         </div>
@@ -204,34 +229,21 @@ export function MatrixQuestionBuilder() {
           key={question.id}
           className="border border-gray-200 rounded-xl overflow-hidden relative"
         >
-          {editingQuestionIndex === index ? (
-            // Show admin mode when editing - no delete button
-            <AdminMode
-              question={question}
-              updateQuestion={updateQuestion}
-              onSave={stopEditing}
-              onAddQuestion={resetCurrentQuestion}
-            />
-          ) : (
-            // Show user mode content only - no delete button
-            <UserMode question={question} onEdit={() => startEditing(index)} />
-          )}
+          <UserMode question={question} onEdit={() => startEditing(index)} />
         </div>
       ))}
 
-      {/* Single Add Question button at the bottom - only show when not editing */}
-      {editingQuestionIndex === null && (
-        <div className="flex justify-center pt-4">
-          <Button
-            onClick={addNewQuestion}
-            variant="outline"
-            className="border-primary-blue text-primary-blue hover:bg-primary-blue-light px-6 py-3 rounded-full flex items-center gap-2"
-          >
-            <Plus className="w-4 h-4" />
-            إضافة سؤال آخر
-          </Button>
-        </div>
-      )}
+      {/* Single Add Question button at the bottom */}
+      <div className="flex justify-center pt-4">
+        <Button
+          onClick={addNewQuestion}
+          variant="outline"
+          className="border-primary-blue text-primary-blue hover:bg-primary-light px-6 py-3 h-12 rounded-full flex items-center gap-2"
+        >
+          <SVG name="plus" size={16} color="var(--primary-blue)" />
+          إضافة سؤال آخر
+        </Button>
+      </div>
     </div>
   );
 }

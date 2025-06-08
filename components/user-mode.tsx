@@ -127,7 +127,7 @@ export function UserMode({ question, onEdit }: UserModeProps) {
                                 checked as boolean
                               )
                             }
-                            className="w-5 h-5 border-2 border-gray-300 data-[state=checked]:bg-primary-blue data-[state=checked]:border-primary-blue"
+                            className="w-5 h-5 border-2 border-gray-300 data-[state=checked]:bg-primary data-[state=checked]:border-primary-blue"
                           />
                         ) : (
                           <RadioGroup
@@ -160,7 +160,7 @@ export function UserMode({ question, onEdit }: UserModeProps) {
       <div className="px-8 pb-8">
         <div className="bg-gray-100 rounded-full h-2 overflow-hidden">
           <div
-            className="bg-primary-blue h-full transition-all duration-300 ease-out"
+            className="bg-primary h-full transition-all duration-300 ease-out"
             style={{ width: `${progressPercentage}%` }}
           ></div>
         </div>
