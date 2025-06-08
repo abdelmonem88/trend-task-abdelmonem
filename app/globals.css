@@ -124,14 +124,6 @@ body {
   color: var(--natural-black);
 }
 
-/* Ensure inputs and form elements inherit the color */
-input,
-textarea,
-select,
-button {
-  color: inherit;
-}
-
 .text-primary-blue {
   color: var(--primary-blue) !important;
 }
@@ -176,4 +168,146 @@ button {
 
 .scrollable-container::-webkit-scrollbar-thumb:hover {
   background: var(--primary-blue-hover);
+}
+
+/* Radio Button Styles */
+.radio-item {
+  /* Structure */
+  position: relative;
+  aspect-ratio: 1;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+
+  /* Border & Background */
+  border: 2px solid #d1d5db; /* gray-300 */
+  background-color: white;
+
+  /* Interaction */
+  cursor: pointer;
+  outline: none;
+
+  /* Animation */
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Radio Button States */
+.radio-item:hover:not(:disabled) {
+  border-color: #9ca3af; /* gray-400 */
+  transform: scale(1.05);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.radio-item:focus-visible {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(14, 4, 100, 0.1);
+}
+
+.radio-item[data-state="checked"] {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 1px var(--primary-blue);
+}
+
+.radio-item[data-state="checked"]:hover {
+  border-color: var(--primary-blue-hover);
+  box-shadow: 0 0 0 1px var(--primary-blue-hover);
+}
+
+.radio-item:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.radio-item:disabled:hover {
+  border-color: #d1d5db;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Radio Indicator Container */
+.radio-indicator {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Radio Inner Dot */
+.radio-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--primary-blue);
+  transform: scale(0);
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.radio-item[data-state="checked"] .radio-dot {
+  transform: scale(1);
+}
+
+/* Checkbox Styles - Consistent with Radio Buttons */
+[data-slot="checkbox"] {
+  /* Structure */
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 4px;
+
+  /* Border & Background */
+  border: 2px solid #d1d5db; /* gray-300 */
+  background-color: white;
+
+  /* Interaction */
+  cursor: pointer;
+  outline: none;
+
+  /* Animation */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Checkbox States */
+[data-slot="checkbox"]:hover:not(:disabled) {
+  border-color: #9ca3af; /* gray-400 */
+  transform: scale(1.05);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+[data-slot="checkbox"]:focus-visible {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(14, 4, 100, 0.1);
+}
+
+[data-slot="checkbox"][data-state="checked"] {
+  background-color: var(--primary-blue);
+  border-color: var(--primary-blue);
+  color: white;
+}
+
+[data-slot="checkbox"][data-state="checked"]:hover {
+  background-color: var(--primary-blue-hover);
+  border-color: var(--primary-blue-hover);
+}
+
+[data-slot="checkbox"]:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+[data-slot="checkbox"]:disabled:hover {
+  border-color: #d1d5db;
+  background-color: white;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Checkbox checked state SVG styling */
+[data-slot="checkbox"][data-state="checked"] svg {
+  color: white;
+  width: 12px;
+  height: 12px;
 }
