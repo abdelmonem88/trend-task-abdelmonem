@@ -1,5 +1,5 @@
 import { MatrixQuestion } from "@/types/matrix";
-import { createQuestion, validateQuestion } from "@/lib/utils/question-utils";
+import { createQuestion, validateQuestion } from "@/lib/helpers/question";
 import { toast } from "sonner";
 
 interface QuestionOperationsProps {

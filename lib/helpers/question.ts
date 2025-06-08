@@ -1,6 +1,8 @@
 import { MatrixQuestion } from "@/types/matrix";
 
-// Helper function to create a new question with predictable IDs
+/**
+ * Creates a new question with predictable IDs and default values
+ */
 export function createQuestion(index: number): MatrixQuestion {
   return {
     id: `question-${index + 1}`,
@@ -12,7 +14,10 @@ export function createQuestion(index: number): MatrixQuestion {
   };
 }
 
-// Form validation function with improved error messages
+/**
+ * Validates a question and returns array of error messages
+ * Returns empty array if valid
+ */
 export function validateQuestion(question: MatrixQuestion): string[] {
   const errors: string[] = [];
 
@@ -51,4 +56,22 @@ export function validateQuestion(question: MatrixQuestion): string[] {
   }
 
   return errors;
+}
+
+/**
+ * Checks if a question is valid (has no validation errors)
+ */
+export function isQuestionValid(question: MatrixQuestion): boolean {
+  return validateQuestion(question).length === 0;
+}
+
+/**
+ * Gets a human-readable summary of a question
+ */
+export function getQuestionSummary(question: MatrixQuestion): string {
+  const rowCount = question.rows.length;
+  const colCount = question.columns.length;
+  const type = question.allowMultiple ? "متعدد الخيارات" : "خيار واحد";
+
+  return `${rowCount} صفوف × ${colCount} أعمدة (${type})`;
 }

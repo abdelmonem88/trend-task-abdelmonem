@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { MatrixQuestion } from "@/types/matrix";
-import { createQuestion } from "@/lib/utils/question-utils";
+import { createQuestion } from "@/lib/helpers/question";
 
 export function useQuestionState() {
   const [editingQuestionIndex, setEditingQuestionIndex] = useState<
